@@ -1,0 +1,2 @@
+# CSolutionHackerRank
+HackerRank C Solution
