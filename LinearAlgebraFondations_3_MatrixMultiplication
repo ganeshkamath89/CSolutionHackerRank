@@ -1,0 +1,30 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    int r, c, i, j;
+    int a[2][2] = {{1, 2}, {2, 3}}, b[2][2] = {{4, 5}, {7, 8}}, product[2][2];
+
+    r = 2, c = 2;
+
+  // adding two matrices
+  for (i = 0; i < r; ++i)
+    for (j = 0; j < c; ++j) {
+         for (int k = 0; k < r; ++k) {
+           product[i][j] += a[i][k] * b[k][j];
+         }
+    }
+
+  // printing the result
+  for (i = 0; i < r; ++i)
+    for (j = 0; j < c; ++j) {
+      printf("%d\n", product[i][j]);
+    }
+
+  return 0;
+}
