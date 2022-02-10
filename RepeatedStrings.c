@@ -25,21 +25,27 @@ long parse_long(char*);
  */
 
 long repeatedString(char* s, long n) {
-    long i; 
-    long o=0;
+    long i;
+    long OccurrenceCount = 0;
     for(i=0;s[i]!='\0';i++)
+    {
+        if(s[i]=='a')
         {
-        if(s[i]=='a')
-            o++;
+            OccurrenceCount++;
+        }
     }
-    long p=n%i;
-    n=n/i;
-    o=o*n;
-    n=0;
-    for(i=0;i<p;i++)
-        if(s[i]=='a')
-            n++;
-    return(o+n);
+    long reminder = n % i;
+    long quotient=n/i;
+    OccurrenceCount = OccurrenceCount * quotient;
+    long count=0;
+    for (i = 0; i < reminder; i++)
+    {
+        if (s[i] == 'a')
+        {
+            count++;
+        }
+    }
+    return (OccurrenceCount + count);
 }
 
 int main()
