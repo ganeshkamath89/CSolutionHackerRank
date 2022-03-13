@@ -25,18 +25,8 @@ int parse_int(char*);
  */
 
 int pageCount(int n, int p) {
-    if(p == 1 || p == n){
-        return 0;
-    }
-    int location = 1 + (p - 2) / 2;
-    int Value = 0;
-    if(n%2 == 0){
-        Value = (1 + (n - p - 1) / 2);
-    }
-    else
-    {
-        Value = (n - p) / 2;
-    }
+    int location = p / 2;
+    int Value = n / 2 - location;
     return (location < Value ? location : Value);
 }
 
