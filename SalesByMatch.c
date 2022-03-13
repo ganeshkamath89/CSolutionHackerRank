@@ -24,6 +24,7 @@ int parse_int(char*);
  *  1. INTEGER n
  *  2. INTEGER_ARRAY ar
  */
+//Solution 1: using Quick Sort
  void swap(int* a, int* b)
 {
     int t = *a;
@@ -69,6 +70,24 @@ int sockMerchant(int n, int ar_count, int* ar) {
     }
     return sockPairCount;
 }
+
+// Solution 2 using counting sort
+/*
+int sockMerchant(int n, int ar_count, int* ar) {
+    int num[101] = {0};
+    for(int i = 0; i < ar_count; i++)
+    {
+        num[ar[i]]++;
+    }
+    int sum = 0;
+    for(int i = 0; i< 101; i++)
+    {
+        int count = num[i]/2;
+        sum+=count;
+    }
+    return sum;
+}
+*/
 
 int main()
 {
