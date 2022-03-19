@@ -44,31 +44,33 @@ int parse_int(char*);
  *
  */
 char* caesarCipher(char* s, int k) {
-    int mod = k % 26;
-    for (int i = 0; i < strlen(s); i++)
+    int diff = 26; // this is same as ('z' - 'a' + 1) and ('Z' - 'A' + 1)
+    int shift = k % diff;
+    int len = strlen(s);
+    char* result = (char*)calloc(len+1, sizeof(char));
+    for(int i = 0; i< len; i++)
     {
-        if (s[i] <= 'Z' && s[i] >= 'A')
+        char sChar = s[i];
+        bool check1 = (sChar >= 'a' && sChar <= 'z');
+        bool check2 = (sChar >= 'A' && sChar <= 'Z');
+        int resChar = sChar + ((check1 || check2) ? shift : 0);
+        if (check1)
         {
-            if (s[i] + mod <= 'Z' && s[i] + mod >= 'A')
+            if (resChar > 'z')
             {
-                s[i] = s[i] + mod;
-            }
-            else {
-                s[i] = 'A' + (((s[i]) + mod) - 'Z') - 1;
+                resChar = resChar - diff;
             }
         }
-        else if (s[i] <= 'z' && s[i] >= 'a')
+        else if (check2)
         {
-            if (s[i] + mod <= 'z' && s[i] + mod >= 'a')
+            if (resChar > 'Z')
             {
-                s[i] = s[i] + mod;
-            }
-            else {
-                s[i] = 'a' + (((s[i]) + mod) - 'z') - 1;
+                resChar = resChar - diff;
             }
         }
+        result[i] = resChar;
     }
-    return s;
+    return result;
 }
 
 int main()
