@@ -77,24 +77,21 @@ char* balancedSums(int arr_count, int* arr) {
 */
 
 char* balancedSums(int arr_count, int* arr, int sum) {
-    // 2x = sum - y
+    // {x + y + x = sum} => {2x = sum - y}
     if (arr_count == 1)
         return "YES";
     int x = 0;
     for(int i = 0; i<arr_count - 1; i++)
     {
-        if (i != 0)
-        {
-            x += arr[i - 1];
-        }
-        if (2*x > sum)
-        {
-            break;
-        }
         int y = arr[i];
         if (2*x == sum - y)
         {
             return "YES";
+        }
+        x = x + y;
+        if (2*x > sum)
+        {
+            break;
         }
     }
     return "NO";
