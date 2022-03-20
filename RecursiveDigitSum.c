@@ -24,6 +24,44 @@ int parse_int(char*);
  *  1. STRING n
  *  2. INTEGER k
  */
+
+/*
+// Alternatively we can multiply by K after finding sum on one string digit to minimize computation
+int superDigit(char* n, int k) {
+    long sumN = 0;
+    for(long i = 0; i< strlen(n); i++)
+    {
+        if (n[i]>='0' && n[i]<='9')
+        {
+            sumN += n[i] - '0';
+        }
+    }    
+    long smallSum = 0;
+    while(sumN > 0)
+    {
+        smallSum += sumN%10; 
+        sumN /= 10;
+        if (sumN ==0 && smallSum > 9)
+        {
+            sumN = smallSum;
+            smallSum = 0;
+        }
+    }
+    sumN = smallSum*k;
+    smallSum = 0;
+    while(sumN > 0)
+    {
+        smallSum += sumN%10; 
+        sumN /= 10;
+        if (sumN ==0 && smallSum > 9)
+        {
+            sumN = smallSum;
+            smallSum = 0;
+        }
+    }
+    return smallSum;
+}
+*/
  
 int superDigit(char* n, long k) {
     long len = strlen(n);
