@@ -27,15 +27,8 @@ int parse_int(char*);
 
 /*
 // Alternatively we can multiply by K after finding sum on one string digit to minimize computation
-int superDigit(char* n, int k) {
-    long sumN = 0;
-    for(long i = 0; i< strlen(n); i++)
-    {
-        if (n[i]>='0' && n[i]<='9')
-        {
-            sumN += n[i] - '0';
-        }
-    }    
+int getSmallSum(int sumN)
+{
     long smallSum = 0;
     while(sumN > 0)
     {
@@ -47,18 +40,21 @@ int superDigit(char* n, int k) {
             smallSum = 0;
         }
     }
-    sumN = smallSum*k;
-    smallSum = 0;
-    while(sumN > 0)
+    return smallSum;
+}
+
+int superDigit(char* n, int k) {
+    long sumN = 0;
+    for(long i = 0; i< strlen(n); i++)
     {
-        smallSum += sumN%10; 
-        sumN /= 10;
-        if (sumN ==0 && smallSum > 9)
+        if (n[i]>='0' && n[i]<='9')
         {
-            sumN = smallSum;
-            smallSum = 0;
+            sumN += n[i] - '0';
         }
-    }
+    }    
+    int smallSum = getSmallSum(sumN);
+    sumN = smallSum*k;
+    smallSum = getSmallSum(sumN);
     return smallSum;
 }
 */
