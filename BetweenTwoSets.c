@@ -26,7 +26,6 @@ int parse_int(char*);
  */
 
 int getTotalX(int a_count, int* a, int b_count, int* b) {
-    int cnt = 0, flag = 1;
     int kMin = a[0];
     for(int i = 1; i<a_count; i++)
     {
@@ -45,17 +44,35 @@ int getTotalX(int a_count, int* a, int b_count, int* b) {
         }
     }
     kMax++;
+    
+    int cnt = 0, flag = 1;
     for (int k=kMin; k<=kMax; k++)
     {
-        int flag = 1;
+        flag = 1;
         for (int i=0; i<a_count; i++)
+        {
             if (k % a[i] != 0)
+            {
                 flag = 0;
+                break;
+            }
+        }
+        if (flag == 0)
+        {
+            continue;
+        }
         for (int i=0; i<b_count; i++)
+        {
             if (b[i] % k != 0)
+            {
                 flag = 0;
+                break;
+            }
+        }
         if (flag == 1)
+        {
             cnt ++;
+        }
     }
     return cnt;
 }
